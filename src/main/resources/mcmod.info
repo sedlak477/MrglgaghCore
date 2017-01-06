@@ -1,0 +1,9 @@
+[{
+  "modid": "mrglgaghcore",
+  "name": "MrglgaghCore",
+  "description": "Forge mod with helper functions for all sorts of modding stuff",
+  "version": "1.0",
+  "mcversion": "1.11",
+  "authorList": ["sedlak477"],
+  "credits": "I'd like to thank my mother and father."
+}]
