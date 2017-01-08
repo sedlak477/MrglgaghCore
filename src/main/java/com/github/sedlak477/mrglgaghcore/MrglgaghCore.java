@@ -1,15 +1,10 @@
 package com.github.sedlak477.mrglgaghcore;
 
-import com.github.sedlak477.mrglgaghcore.proxy.IProxy;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +19,8 @@ public class MrglgaghCore {
 
     public static final Logger logger = LogManager.getLogger(MrglgaghCore.MODID);
 
-    @SidedProxy(clientSide = "com.github.sedlak477.mrglgaghcore.proxy.ClientProxy", serverSide = "com.github.sedlak477.mrglgaghcore.proxy.CommonProxy")
-    public static IProxy proxy;
+    @SidedProxy(clientSide = "com.github.sedlak477.mrglgaghcore.ClientProxy", serverSide = "com.github.sedlak477.mrglgaghcore.CommonProxy")
+    public static CommonProxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent e){

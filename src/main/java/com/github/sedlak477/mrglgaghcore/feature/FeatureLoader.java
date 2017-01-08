@@ -1,6 +1,5 @@
 package com.github.sedlak477.mrglgaghcore.feature;
 
-
 import com.github.sedlak477.mrglgaghcore.MrglgaghCore;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
