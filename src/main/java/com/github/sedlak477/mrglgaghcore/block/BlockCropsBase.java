@@ -31,7 +31,7 @@ public class BlockCropsBase extends BlockCrops {
         this(unlocalizedName, modId, seed, crop, 7, Arrays.asList(new Object[]{Blocks.FARMLAND}));
     }
 
-    public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop, int maxAge, Collection<Block> canGrowOn) {
+    public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop, int maxAge, Collection<Block> canGrowOn, EnumPlantType plantType) {
         super();
         if(maxAge < 0)
             throw new IllegalArgumentException("maxAge can't be negative");
@@ -42,6 +42,7 @@ public class BlockCropsBase extends BlockCrops {
         this.seed = seed;
         this.crop = crop;
         this.canGrowOn = canGrowOn;
+		this.plantType = plantType;
     }
 
     @Override
@@ -76,6 +77,6 @@ public class BlockCropsBase extends BlockCrops {
 
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
-        return super.getPlantType(world, pos);
+        return plantType;
     }
 }
