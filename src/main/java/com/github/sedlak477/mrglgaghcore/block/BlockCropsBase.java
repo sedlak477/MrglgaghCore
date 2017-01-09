@@ -28,7 +28,7 @@ public class BlockCropsBase extends BlockCrops {
     private Collection<Block> canGrowOn;
 
     public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop) {
-        this(unlocalizedName, modId, seed, crop, 7, Arrays.asList(new Object[]{Blocks.FARMLAND}));
+        this(unlocalizedName, modId, seed, crop, 7, Arrays.asList(new Object[]{Blocks.FARMLAND}), EnumPlantType.Crop);
     }
 
     public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop, int maxAge, Collection<Block> canGrowOn, EnumPlantType plantType) {
