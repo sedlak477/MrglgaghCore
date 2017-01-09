@@ -17,28 +17,26 @@ import scala.actors.threadpool.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class BlockCropsBase extends BlockCrops {
+public abstract class BlockCropsBase extends BlockCrops {
 
-    public final PropertyInteger AGE;
-
-    private int maxAge;
     private Item seed;
     private Item crop;
     private EnumPlantType plantType;
     private Collection<Block> canGrowOn;
 
     public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop) {
-        this(unlocalizedName, modId, seed, crop, 7, Arrays.asList(new Object[]{Blocks.FARMLAND}), EnumPlantType.Crop);
+        this(unlocalizedName, modId, seed, crop, EnumPlantType.Crop);
     }
 
-    public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop, int maxAge, Collection<Block> canGrowOn, EnumPlantType plantType) {
+    public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop, EnumPlantType plantType) {
+        this(unlocalizedName, modId, seed, crop, Arrays.asList(new Object[]{Blocks.FARMLAND}), plantType);
+    }
+
+    public BlockCropsBase(String unlocalizedName, String modId, Item seed, Item crop, Collection<Block> canGrowOn,
+                          EnumPlantType plantType) {
         super();
-        if(maxAge < 0)
-            throw new IllegalArgumentException("maxAge can't be negative");
-        AGE = PropertyInteger.create("age", 0, maxAge);
         setUnlocalizedName(unlocalizedName);
         setRegistryName(new ResourceLocation(modId, unlocalizedName));
-        this.maxAge = maxAge;
         this.seed = seed;
         this.crop = crop;
         this.canGrowOn = canGrowOn;
@@ -51,9 +49,7 @@ public class BlockCropsBase extends BlockCrops {
     }
 
     @Override
-    public int getMaxAge() {
-        return maxAge;
-    }
+    public abstract int getMaxAge();
 
     @Override
     public Item getCrop() {
@@ -66,17 +62,13 @@ public class BlockCropsBase extends BlockCrops {
     }
 
     @Override
-    protected PropertyInteger getAgeProperty() {
-        return AGE;
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{AGE});
-    }
-
-    @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
         return plantType;
     }
+
+    @Override
+    protected abstract PropertyInteger getAgeProperty();
+
+    @Override
+    protected abstract BlockStateContainer createBlockState();
 }
